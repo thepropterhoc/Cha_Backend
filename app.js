@@ -5,7 +5,7 @@ var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/live');
 
-var app = module.exports = express.createServer();
+var app = module.exports;
 
 // Configuration
 

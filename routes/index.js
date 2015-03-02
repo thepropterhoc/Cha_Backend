@@ -64,7 +64,7 @@ exports.loginUser = function(req, res){
       res.end("Error finding user email");
     } else {
       for (record in records) {
-        if (passwordHash.verify(pswd, record.hash)) {
+        if (passwordHash.verify(pswd, record.hash) == true) {
           res.json(record);
         } else {
           res.json("Invalid login");

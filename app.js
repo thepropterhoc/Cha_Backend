@@ -4,7 +4,6 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var passwordHash = require('password-hash');
 
 var stripe = require("stripe")(
   "sk_test_JdN9Bkldmcfj2l7YclFBPVY7"

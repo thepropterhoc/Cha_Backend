@@ -6,6 +6,7 @@
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/live');
+var passwordHash = require('password-hash');
 
 exports.addUser = function(req, res) {
   var collection = db.get('users'); 

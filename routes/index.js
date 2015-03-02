@@ -23,9 +23,11 @@ exports.addUser = function(req, res) {
 
   collection.insert(newUser, {}, function(err, records){
     if(err){
-      res.end(error);
+      res.json(error);
+      res.end();
     } else {
-      res.end(records);
+      res.json(records);
+      res.end();
     }
   });
 };

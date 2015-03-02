@@ -16,6 +16,7 @@ exports.addUser = function(req, res) {
       firstName : req.body.firstName,
       lastName : req.body.lastName,
       cell : req.body.cell,
+      email : req.body.email,
       hash : hashed
   };
 
@@ -31,11 +32,15 @@ exports.addUser = function(req, res) {
 exports.updateUser = function(req, res) {
   var collection = db.get('users');
 
+  var hashed = passwordHash.generate(req.body.password)
+
   var user = {
     _id : req.body._id,
     firstName : req.body.firstName,
     lastName : req.body.lastName,
-    cell : req.body.cell
+    cell : req.body.cell,
+    email : req.body.email,
+    hash : hashed
   }
 
   collection.update({_id : req.body._id}, user, {}, function(err, records){

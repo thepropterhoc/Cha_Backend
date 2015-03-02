@@ -18,9 +18,9 @@ exports.addUser = function(req, res) {
 
   collection.insert(newUser, {}, function(err, records){
     if(err){
-      res.end('{"error" : "something went terribly wrong", "status" : 500}');
+      res.end(error);
     } else {
-      res.end('{"success" : "Updated Successfully", "status" : 200}');
+      res.end(records);
     }
   });
 };
@@ -37,6 +37,17 @@ exports.updateUser = function(req, res) {
 
   collection.update({_id : req.body._id}, user, {}, function(err, records){
     if(err){
+      res.end(err);
+    } else {
+      res.end(records);
+    }
+  });
+};
+
+exports.allUsers = function(req, res){
+  var collection = db.get('users');
+  collection.find({}, {}, function(err, records){
+    if(err){
       res.json(err);
       res.end();
     } else {
@@ -44,8 +55,5 @@ exports.updateUser = function(req, res) {
       res.end();
     }
   });
-}
-
-exports.index = function(req, res){
-  res.render('index')
 };
+

@@ -10,10 +10,13 @@ var db = monk('localhost:27017/live');
 exports.addUser = function(req, res) {
   var collection = db.get('users'); 
 
+  var hashed = passwordHash.generate(req.body.password)
+
   var newUser = {
       firstName : req.body.firstName,
       lastName : req.body.lastName,
-      cell : req.body.cell
+      cell : req.body.cell,
+      hash : hashed
   };
 
   collection.insert(newUser, {}, function(err, records){
@@ -40,6 +43,25 @@ exports.updateUser = function(req, res) {
       res.end(err);
     } else {
       res.end(records);
+    }
+  });
+};
+
+exports.loginUser = function(req, res){
+  var collection = db.get('users');
+  var em = req.body.email;
+  var pswd = req.body.password;
+  collection.find({email : em}, {}, function(err, records){
+    if (err) {
+      res.end("Error finding user email");
+    } else {
+      for record in records {
+        if (passwordHash.verify(pswd, record.hash)) {
+          res.json(record);
+        } else {
+          res.json("Invalid login");
+        }
+      }
     }
   });
 };

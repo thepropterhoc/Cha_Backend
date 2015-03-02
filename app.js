@@ -31,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.post('/users/add', routes.addUser);
 app.post('/users/update', routes.updateUser);
 app.get('/users/all', routes.allUsers);
+app.post('/users/login', routes.loginUser);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

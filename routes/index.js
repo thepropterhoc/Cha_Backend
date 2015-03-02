@@ -60,7 +60,7 @@ exports.loginUser = function(req, res){
     if (err) {
       res.end("Error finding user email");
     } else {
-      for record in records {
+      for (record in records) {
         if (passwordHash.verify(pswd, record.hash)) {
           res.json(record);
         } else {

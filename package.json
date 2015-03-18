@@ -16,6 +16,7 @@
     , "mongodb": "*"
     , "monk": "*", 
     "ejs": "*",
-    "aws-sdk": "*"
+    "aws-sdk": "*",
+    "crypto": "*"
   }
 }
